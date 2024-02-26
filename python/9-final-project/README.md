@@ -1,5 +1,4 @@
 # Football stats
-Video Demo:  https://youtu.be/b-_S-TS2F0c
 ## Summary:
 Football stats is a command-line tool built with Python to query and filter football (or "soccer") data from a .csv file. Users can look for player statistics from a given season in a given competition, provided they supply a .csv file with that data, and will have that player data output to them in the command-line.
 ## How to use

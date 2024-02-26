@@ -1,7 +1,6 @@
 # Football DB
-[Video demo URL](https://youtu.be/QVTieepkTTM)
 
-I like to play football, or what you in the United States would call "soccer". I can use scores of apps to track my favorite teams' games, and I would like to do the same for my own team that plays at an amateur level. For the final project of CS50's Introduction to Computer Science, I have built (the start of) a REST API with Flask and Sqlite3 to do just that! I can create club, add teams to that clubs, create players, add players to a team, and so on!
+I like to play football. I can use scores of apps to track my favorite teams' games, and I would like to do the same for my own team that plays at an amateur level. For the final project of CS50's Introduction to Computer Science, I have built (the start of) a REST API with Flask and Sqlite3 to do just that! I can create club, add teams to that clubs, create players, add players to a team, and so on!
 ## Design choices & constraints
 For this project, I focused "just" on creating a REST API with Flask. I could have added some frontend display with Flask, but I thought just building the API would be more than enough work already (and it was!).
 

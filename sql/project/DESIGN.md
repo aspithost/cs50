@@ -1,9 +1,5 @@
 # Design Document
 
-By Abel Spithost
-
-Video overview: https://youtu.be/v1GpHo3lOjM
-
 ## Scope
 
 As an amateur football (or "soccer") player, I would like to keep track of my team's games and statistics. To do so, I have built a database in MySQL which would allow me to do just that!
