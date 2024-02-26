@@ -1,0 +1,31 @@
+# Python
+*.pyc
+__pycache__/
+
+# C/C++
+*.o
+*.obj
+*.exe
+
+# JavaScript
+*.min.js
+*.node_modules/
+
+# SQL
+*.sqlite
+
+# Ignore all swap files and temporary files
+*.swp
+*.tmp
+
+# VSCode
+.vscode/
+
+# Flask
+.venv/
+
+# DB
+*.db
+
+# Images
+*.ppm

@@ -1,0 +1,11 @@
+sort1 uses: bubble
+
+How do you know?: bubble sort has an O of n^2, and may need to do n * n / 2 "flips" of values.
+
+sort2 uses: merge
+
+How do you know?: merge has the fastest sorting time (n log n)
+
+sort3 uses: selection
+
+How do you know?: selection sort has an O of n^2, but only needs to do n "flips"/insertions, so it is faster than bubble sortsubmit50 cs50/labs/2023/x/sort

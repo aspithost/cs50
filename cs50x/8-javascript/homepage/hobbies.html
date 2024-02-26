@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link href="styles.css" rel="stylesheet">
+        <title>Hobbies</title>
+    </head>
+    <body>
+        <header>
+            <nav class="screen-breakpoints">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="/index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/hobbies.html" class="nav-link active">Hobbies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/sports.html" class="nav-link">Sports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/bobbie.html" class="nav-link">My dog Bobbie</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="screen-breakpoints">
+            <h1>One of my hobbies: trying out new craft beer!</h1>
+            <p>
+                I like drinking a craft beer from time to time. With a heavy emphasis on "a" and "from time to time"!
+                When I do have a drink, I like to try new craft beers that I haven't had before.
+            </p>
+            <h2>How drunk will this get me??</h2>
+            <p>
+                If you have ever had craft beer, you may know that craft beers tend to contain more alcohol than regular beers.`
+                You may want to try some new craft beers, but you'd also like to drink responsibly. Therefore, I have built
+                a "Drunk-o-meter" so that you can check how quickly these craft beers would get you drunk!
+            </p>
+            <p>
+                This is far from peer-reviewed medical science, but try and "drink" some beers and see for yourself how you'd hold up!
+            </p>
+            <p>
+                So go ahead, order that beer, choose a pint size, and see how you inebriated you get!
+            </p>
+            <h2>Drunk-o-meter</h2>
+            <div class="progress mb-4">
+                <div id="drunk-o-meter" class="progress-bar" role="progressbar" aria-label="Drunk-o-meter" style="width: 0%">
+                    Sober
+                </div>
+            </div>
+            <form id="select-beer">
+                <select class="form-select my-2" aria-label="Type of beer" name="beer-type">
+                    <option selected value="default">Choose a beer</option>
+                    <option value="lager">Lager</option>
+                    <option value="blonde">Blonde</option>
+                    <option value="weizen">Weizen</option>
+                    <option value="IPA">IPA</option>
+                    <option value="porter">Porter</option>
+                    <option value="tripel">Belgian Tripel</option>
+                    <option value="quadruple">Quadruple</option>
+                    <option value="stout">Imperial Stout</option>
+                </select>
+                <select class="form-select my-2" aria-label="Pint size" name="pint-size">
+                    <option selected value="default">Choose a pint size</option>
+                    <option value="small">8 oz</option>
+                    <option value="medium">12 oz</option>
+                    <option value="large">16 oz</option>
+                </select>
+                <input type="submit" value="Chug!" class="btn btn-primary">
+            </form>
+        </main>
+        <footer>
+            <p>&copy; A fancy footer, no rights reserved (is that a thing?)</p>
+            <p>Contact my dog at fake@email.com. Responses may be illegible!</p>
+        </footer>
+        <script>
+            const BEER_PERCENTAGES = {
+                'lager': 5,
+                'blonde': 6.5,
+                'weizen': 6,
+                'IPA': 7,
+                'porter': 5.5,
+                'tripel': 8.5,
+                'quadruple': 10,
+                'stout': 11,
+            };
+            const PINT_SIZES = {
+                'small': 8,
+                'medium': 12,
+                'large': 16,
+            }
+            const MAX_DRUNKNESS = 480;
+            let drunkness = 0;
+
+            const drunkOMeter = document.getElementById('drunk-o-meter');
+
+            function drinkBeer(event) {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const beerType = formData.get('beer-type');
+                const pintSize = formData.get('pint-size');
+
+                if (beerType === 'default' || pintSize === 'default') {
+                    return alert('Please select a beer type and a pint size!');
+                }
+
+                const weightedAmount = BEER_PERCENTAGES[beerType] * PINT_SIZES[pintSize];
+
+                drunkness += weightedAmount;
+                const percentage = drunkness / MAX_DRUNKNESS * 100;
+
+                if (percentage < 100) {
+                    drunkOMeter.style.width = `${percentage}%`;
+
+                    if (percentage < 15) {
+                        return;
+                    } else if (percentage < 30) {
+                        drunkOMeter.innerText = 'Tipsy!';
+                    } else if (percentage < 45) {
+                        drunkOMeter.innerText = 'Buzzed';
+                    } else if (percentage < 60) {
+                        drunkOMeter.innerText = 'Overly talkative';
+                    } else if (percentage < 75) {
+                        drunkOMeter.innerText = '"One more drink??"';
+                    } else if (percentage < 90) {
+                        drunkOMeter.innerText = '"I love you man!"';
+                    } else {
+                        drunkOMeter.innerText = '"I want to go to bed"';
+                    }
+                } else {
+                    drunkOMeter.style.width = '100%';
+                    setTimeout(() => {
+                        alert('You got so drunk that they kicked you of the bar! Sleep off that buzz and come back some other day!');
+                        drunkOMeter.style.width = '0%';
+                        drunkOMeter.innerText = 'Sober';
+                        drunkness = 0;
+                    }, 500);
+                }
+            }
+
+            const beerForm = document.getElementById('select-beer');
+            beerForm.addEventListener('submit', drinkBeer)
+        </script>
+    </body>
+</html>

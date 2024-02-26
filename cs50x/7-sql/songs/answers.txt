@@ -1,0 +1,5 @@
+I would describe the user's aura as close to orange. The songs are relatively high-energy and danceable, while the valence is right around average.
+
+A user's aura will be heavily schewed towards their favorite songs in this example, whereas the mood of songs outside the top 100 is not considered at all.
+If calculating a user's mood from all songs listened to would be too heavy an operation computationally, Spotify could characterize songs themselves as being in a certain
+mood category, and then calculate the user's mood based on their most listened to categories.

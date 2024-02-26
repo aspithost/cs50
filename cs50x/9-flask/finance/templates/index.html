@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Portfolio
+{% endblock %}
+
+{% block main %}
+<h2>Your Portfolio</h2>
+<h3>Stocks owned</h3>
+<div class="section">
+     <table>
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Stock price</th>
+                <th>Number of stocks</th>
+                <th>Total value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.stock }}</td>
+                <td>{{ stock.price | usd }}</td>
+                <td>{{ stock.amount }}</td>
+                <td>{{ (stock.price * stock.amount) | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h3>Total holdings</h3>
+<div class="section">
+     <table>
+        <thead>
+            <tr>
+                <th>Holding</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cash</td>
+                <td>{{ cash | usd }}</td>
+            </tr>
+            <tr>
+                <td>Stocks</td>
+                <td>{{ stock_holdings | usd }}</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>{{ (cash + stock_holdings) | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Top Performing Stocks</h3>
+<div class="section">
+    <table>
+       <thead>
+           <tr>
+               <th>Stock</th>
+               <th>Yield since Purchase</th>
+           </tr>
+       </thead>
+       <tbody>
+        {% for stock in (stocks|sort(reverse=true, attribute="yield"))[:3]%}
+        <tr>
+            <td>{{ stock.stock }}</td>
+            <td>{{ '{:.2%}'.format(stock.yield) }}</td>
+        </tr>
+        {% endfor %}
+       </tbody>
+   </table>
+</div>
+
+{% if show_worst_performing_stocks %}
+<h3>Worst Performing Stocks</h3>
+<div class="section">
+    <table>
+       <thead>
+           <tr>
+               <th>Stock</th>
+               <th>Yield since Purchase</th>
+           </tr>
+       </thead>
+       <tbody>
+        {% for stock in (stocks|sort(attribute="yield"))[:3]%}
+        <tr>
+            <td>{{ stock.stock }}</td>
+            <td>{{ '{:.2%}'.format(stock.yield) }}</td>
+        </tr>
+        {% endfor %}
+       </tbody>
+   </table>
+</div>
+{% endif %}
+{% endblock %}

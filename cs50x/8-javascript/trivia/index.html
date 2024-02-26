@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            function addListeners(el, color, text) {
+                const parent = el.parentNode;
+                el.addEventListener('change', function(e) {
+                    parent.style.backgroundColor = color;
+                    parent.lastElementChild.style.display = 'block';
+                });
+
+                el.addEventListener('blur', function(e) {
+                    parent.style.backgroundColor = 'transparent';
+                    parent.lastElementChild.style.display = 'none';
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const buttonBobbie = document.getElementById('bobbie');
+                const buttonDobbie = document.getElementById('dobbie');
+                const buttonRobbie = document.getElementById('robbie');
+
+                addListeners(buttonBobbie, 'green', 'Correct!');
+                addListeners(buttonDobbie, 'red', 'Incorrect');
+                addListeners(buttonRobbie, 'red', 'Incorrect');
+
+                const beer = document.getElementById('submit-beer');
+                const beerParent = beer.parentNode;
+                const beerInput = document.getElementById('beer-input');
+
+                beer.addEventListener('click', function(e) {
+                    let color = 'red';
+                    let text = 'Incorrect';
+                    if (/moersleutel/i.test(beerInput.value)) {
+                        color = 'green';
+                        text = 'Correct!';
+                    }
+                    beerParent.lastElementChild.style.display = 'block';
+                    beerParent.lastElementChild.innerText = text;
+                    beerParent.lastElementChild.style.backgroundColor = color;
+                });
+
+                beerInput.addEventListener('input', function(e) {
+                    beerParent.lastElementChild.style.display = 'none';
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is my dog's name?</h3>
+                <div id="bobbie-wrapper">
+                    <input type="radio" id="bobbie" name="dog" value="bobbie">
+                    <label for="bobbie"> Bobbie </label>
+                    <p style="display: none;">Correct!</p>
+                </div>
+                <div id="dobbie-wrapper">
+                    <input type="radio" id="dobbie" name="dog" value="dobbie">
+                    <label for="dobbie"> Dobbie </label>
+                    <p style="display: none;">Incorrect!</p>
+                </div>
+                <div id="robbie-wrapper">
+                    <input type="radio" id="robbie" name="dog" value="robbie">
+                    <label for="robbie"> Robbie </label>
+                    <p style="display: none;">Incorrect!</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is my favorite beer brewery?</h3>
+                <label>
+                    <input id="beer-input" type="text"></input>
+                </label>
+                <button id="submit-beer">Submit answer</button>
+                <p style="display: none;"></p>
+            </div>
+        </div>
+    </body>
+</html>

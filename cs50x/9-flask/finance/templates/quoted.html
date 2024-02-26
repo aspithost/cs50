@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<h2>Quote</h2>
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.price | usd }}</td>
+                <td>{{ stock.symbol }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<a href="/quote">Get another quote!</a>
+{% endblock %}
